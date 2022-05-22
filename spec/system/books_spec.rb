@@ -3,7 +3,7 @@ require 'rails_helper'
 describe '投稿のテスト' do
   let!(:book) { create(:book,title:'hoge',body:'body') }
   describe 'トップ画面(root_path)のテスト' do
-    before do 
+    before do
       visit root_path
     end
     context '表示の確認' do
@@ -85,6 +85,11 @@ describe '投稿のテスト' do
       end
       it 'bookの削除' do
         before_delete_book = Book.count
+        # binding.pry
+        # page.accept_confirm do
+        #   click_link 'Destroy'
+        # end
+        # page.driver.browser.switch_to.alert.accept
         click_link 'Destroy'
         after_delete_book = Book.count
         expect(before_delete_book - after_delete_book).to eq(1)
@@ -108,7 +113,7 @@ describe '投稿のテスト' do
       it 'Backリンクが表示される' do
         back_link = find_all('a')[1]
         expect(back_link.native.inner_text).to match(/back/i)
-			end  
+			end
     end
     context 'リンクの遷移先の確認' do
       it 'Editの遷移先は編集画面か' do
@@ -138,11 +143,11 @@ describe '投稿のテスト' do
       it 'Showリンクが表示される' do
         show_link = find_all('a')[0]
         expect(show_link.native.inner_text).to match(/show/i)
-			end  
+			end
       it 'Backリンクが表示される' do
         back_link = find_all('a')[1]
         expect(back_link.native.inner_text).to match(/back/i)
-			end  
+			end
     end
     context 'リンクの遷移先の確認' do
       it 'Showの遷移先は詳細画面か' do

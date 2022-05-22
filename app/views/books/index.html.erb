@@ -15,17 +15,18 @@
       <td><%= book.title %></td>
       <td><%= book.body %></td>
       <td><%= link_to "Show", book_path(book.id) %></td>
-　　  <td><%= link_to "Edit", edit_book_path(book.id) %></td>
-　　  <td><%= link_to "DESTROY", book_path(book.id), method: :delete, data: {confirm: "Are you sure?"} %></td>
-　   </tr>
+      <td><%= link_to "Edit", edit_book_path(book.id) %></td>
+      <td><%= link_to 'Destroy', book_path(book.id), method: :delete %></td>
+     </tr>
     <% end %>
-   </table>
+  </tbody>
+</table>
 
 
 <!--以下新規登録機能について記載-->
 <h2>New book</h2>
 <% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
+  <%= @book.errors.count %>件のerrorが発生しました
   <ul>
     <% @book.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -35,16 +36,18 @@
 
 <%= form_with model: @book, url: '/books', method: :post do |f| %>
 
-  <h4>Title</h4>
+  <div>Title</div>
   <%= f.text_field :title %>
 
-  <h4>Body</h4>
+ <div>Body</div>
   <%= f.text_area :body %>
 
-  <br/>
-  <%= f.submit 'Create Book' %>
-
+  <div>
+   <%= f.submit 'Create Book' %>
+   </div>
 <% end %>
+
+
 
 
 
